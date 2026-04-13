@@ -1,8 +1,8 @@
-# Windows 10 on a Contabo VPS - Installation Guide
+# Windows 11 on a Contabo VPS - Installation Guide
 
 ## Introduction
 
-This guide provides step-by-step instructions for installing Windows 10 on a Contabo VPS. Please be aware that you assume full responsibility for all risks associated with this installation.
+This guide provides step-by-step instructions for installing Windows 11 on a Contabo VPS. Please be aware that you assume full responsibility for all risks associated with this installation.
 
 ## Prerequisites
 
@@ -29,10 +29,11 @@ This guide provides step-by-step instructions for installing Windows 10 on a Con
 - Log in with the command `ssh root@<MACHINE-IP>` and enter your Rescue System password.
 - Execute the following commands:
   - `apt install git -y`
-  - `git clone https://github.com/ombadr/Windows10-Contabo-VPS.git`
+  - `git clone https://github.com/ombadr/Windows11-Contabo-VPS.git`
   - `cd contabo-windows-install`
   - `chmod +x windows-install.sh`
-  - `./windows-install.sh`
+  - Go to https://www.microsoft.com/en-us/software-download/windows11, scroll to "Download Windows 11 Disk Image (ISO) for x64 devices", select the ISO, choose your language, and copy the 64-bit download link.
+  - `./windows-install.sh '<PASTE_ISO_URL_HERE>'`
   - The process takes approximately 15 minutes and completes when the ssh session disconnects due to the machine rebooting.
 
 ### 3. Connnect to the VPS with VNC to install Windows
@@ -52,7 +53,7 @@ This guide provides step-by-step instructions for installing Windows 10 on a Con
   
   ![text](https://i.ibb.co/MghHSxm/virtio.png)
 
-- Select `amd64\w10` and click on "Ok"
+- Select `amd64\w11` and click on "Ok"
   
   ![text](https://i.ibb.co/jTmb57J/w10.png)
 
@@ -112,5 +113,5 @@ This guide provides step-by-step instructions for installing Windows 10 on a Con
 
 ## Conclusions
 
-Congratulations! You should now have a fully operational Windows 10 installation on your Contabo VPS. Remember to proceed with these instructions at your own risk and ensure that all software and applications used are legal and compliant with the respective licenses.
+Congratulations! You should now have a fully operational Windows 11 installation on your Contabo VPS. Remember to proceed with these instructions at your own risk and ensure that all software and applications used are legal and compliant with the respective licenses.
   

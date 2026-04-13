@@ -1,5 +1,24 @@
 #!/bin/bash
 
+# Windows 11 ISO download URL
+# Get the direct download link from: https://www.microsoft.com/en-us/software-download/windows11
+# Select "Download Windows 11 Disk Image (ISO)" -> Windows 11 -> your language -> 64-bit Download
+# Then pass the URL as the first argument to this script, or set WIN11_ISO_URL.
+WIN11_ISO_URL="${1:-${WIN11_ISO_URL:-}}"
+
+if [ -z "$WIN11_ISO_URL" ]; then
+    echo "ERROR: No Windows 11 ISO URL provided."
+    echo "Usage: ./windows-install.sh '<ISO_DOWNLOAD_URL>'"
+    echo ""
+    echo "Get the download link from: https://www.microsoft.com/en-us/software-download/windows11"
+    echo "1. Scroll to 'Download Windows 11 Disk Image (ISO) for x64 devices'"
+    echo "2. Select 'Windows 11 (multi-edition ISO for x64 devices)' and click Download"
+    echo "3. Choose your language and click Confirm"
+    echo "4. Click the '64-bit Download' button and copy the URL"
+    echo "5. Run: ./windows-install.sh '<PASTE_URL_HERE>'"
+    exit 1
+fi
+
 apt update -y && apt upgrade -y
 
 apt install grub2 wimtools ntfs-3g -y
@@ -63,9 +82,9 @@ EOF
 cd /root/windisk
 mkdir winfile
 
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1mFQ0KZAz2h_DFUlgYNWmfkcOD_mLjB4F' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1mFQ0KZAz2h_DFUlgYNWmfkcOD_mLjB4F" -O win10.iso && rm -rf /tmp/cookies.txt
+wget -O win11.iso "$WIN11_ISO_URL"
 
-mount -o loop win10.iso winfile
+mount -o loop win11.iso winfile
 
 rsync -avz --progress winfile/* /mnt
 
